@@ -1,0 +1,20 @@
+const express = require('express')
+const { BarangRouter } = require('./barang/barang.router')
+const { MongoDBConnection } = require('./libs/lib.database')
+const { ROUTER_BASE_BARANG } = require('./barang/barang.config')
+const { ROUTER_BASE_CUSTOMER } = require('./customer/customer.config')
+const { CustomerRouter } = require('./customer/customer.router')
+const app = express()
+
+MongoDBConnection()
+
+app.use(express.json())
+
+
+//app.use(ROUTER_BASE_BARANG, BarangRouter)
+
+app.use(ROUTER_BASE_CUSTOMER, CustomerRouter)
+
+module.exports = {
+    app
+}
